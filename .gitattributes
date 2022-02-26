@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# 누군가 파일을 커밋하면 Git은 해당 파일이 텍스트 파일인지 추측하고, 
+# 그렇다면 모든 CR + LF 바이트가 LF 바이트로 대체되는 파일 버전을 커밋 합니다. 
+

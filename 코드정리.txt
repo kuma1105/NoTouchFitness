@@ -1,0 +1,109 @@
+임의 사용자>
+ID : qweasd123
+PW : qweasd123
+
+/index.js : 서버(https) 실행 파일, DB 설정, 최상위 Routes(/, /posts, /users, /comments),
+/util.js : util 모듈, parseError, isLoggedin, noPermission, getPostQueryString, convertToTrees
+https://velog.io/@dosilv/NodeJS-기초-module-정리-util-fs-http
+
+/cert : https 적용 파일
+
+/config : passport로 사용자 인증 구현, 회원가입, 로그인 기능에 사용
+
+MongoDB 스키마>
+/models/Comment.js : 댓글 DB
+/models/Counter.js : 사용예정
+/models/Post.js : 게시판 DB
+/models/User.js : 사용자 DB
+
+public 파일들>
+/public/css/Allfirst.css : 
+/public/css/making.css : 
+/public/css/master.css : 
+/public/css/purchase_number : 
+/public/css/purchase_squat : 
+
+/public/imgs : 사진 파일
+
+/public/js/script.js : 
+
+/public/mp3 : 음성 파일
+
+/public/mp4 : 영상 파일
+
+/public/squat_model : 머신러닝 학습된 스쿼트 모델
+
+라우팅>
+/routes/comments.js : 댓글 기능 라우팅
+POST '/comments/' -> 댓글 작성을 성공하면 /posts 페이지로 넘어간다?
+PUT '/comments/:id' -> 댓글 수정?
+DELETE '/comments/:id' -> 댓글 삭제?
+
+/routes/home.js : 홈페이지 이동, 로그인, 로그아웃 라우팅
+GET '/' ->
+GET '/onlinept' ->
+GET '/onlinept/makingone' ->
+GET '/onlinept/makingtwo' ->
+GET '/onlinept/makingthree' ->
+GET '/onlinept/purchase_squat' ->
+GET '/onlinept/purchase_one' ->
+GET '/onlinept/purchase_two' ->
+GET '/onlinept/purchase_three ->
+GET '/login' -> 로그인 페이지로 이동
+POST '/login' -> 로그인 실행, 성공하면 '/posts'로 이동, 실패하면 '/login'으로 이동
+GET '/logout' -> Passport를 사용한 로그아웃 실행, '/'으로 이동
+
+/routes/posts.js : 게시글 기능 라우팅
+GET '/posts/' -> 
+GET '/posts/new' -> 
+POST '/posts/ -> 
+GET '/posts/:id' -> 
+GET 'posts/:id/edit' -> 
+PUT '/posts/:id -> 
+DELETE '/posts/:id' -> 
+
+/routes/users.js : 사용자?
+GET '/users/new' -> 
+POST '/users/' -> 
+GET '/users/:username' -> 
+GET '/users/:username/edit' -> 
+PUT '/users/:username' -> 
+
+
+
+웹페이지 파일> /views
+/views/home : 
+/views/partials : 
+/views/posts : 
+/views/users : 
+
+
+
+req.isAuthenticated()는 passport에서 제공하는 함수로, 현재 로그인이 되어있는지 아닌지를true,false로 return합니다.
+
+req.user는 passport에서 추가하는 항목으로 로그인이 되면 session으로 부터 user를 deserialize하여 생성됩니다.(이 과정 역시 밑에서 살펴보겠습니다.)
+
+res.locals에 위 두가지를 담는데, res.locals에 담겨진 변수는 ejs에서 바로 사용가능합니다.
+
+res.locals.isAuthenticated는 ejs에서 user가 로그인이 되어 있는지 아닌지를 확인하는데 사용되고, res.locals.currentUser는 로그인된 user의 정보를 불러오는데 사용됩니다.
+
+2022/02/14 DB 값 웹페이지에 보여주기 성공, 차트 만듦, proxy 설정으로 fetch API 잘 되는 듯
+
+req.body, req.params, req.query 차이 공부 및 이해
+https://studyingych.tistory.com/34
+
+req, res 정리
+https://luckyyowu.tistory.com/346
+
+fetch 사용법
+https://velog.io/@khw970421/Fetch-%EC%82%AC%EC%9A%A9%EB%B2%95
+
+시나리오 작성
+머신러닝 모델 웹페이지 코드 정리
+
+광고
+고객대응(전화번호, 푸터바, 상담...)
+기존 웹사이트, 어플 기능 조사
+
+
+***********************************************************************************

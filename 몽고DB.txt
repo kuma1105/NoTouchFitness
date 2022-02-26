@@ -1,0 +1,14 @@
+몽고DB 사용하기>
+cd C:\Program Files\MongoDB\Server\4.4\bin
+mongo
+
+show dbs
+
+use NoTouchFitness
+
+show collections
+
+db.컬럼이름.find().pretty()
+
+
+

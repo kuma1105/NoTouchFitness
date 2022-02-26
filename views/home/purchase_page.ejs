@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/payment_page/style.css">
+  <%- include('../partials/head') %>
+</head>
+
+<body>
+  <div class="sub-body">
+    <header class="header">
+      <h1 class="price"><span class="price__dollar">₩</span>10,000<span class="price__time">/ 월</span></h1>
+      <p class="desc">
+        <%= title %> 패키지
+      </p>
+    </header>
+
+    <div class="select-body">
+      <form action="/purchase" method="post" id="cardForm">
+        <label class="formLabel" for="cardNumber">카드번호</label>
+        <input type="text" maxlength='4' class="card-input" id="cardNumber" style="width: 100px;">
+        <input type="password" maxlength='4' class="card-input" id="cardNumber" style="width: 100px;">
+        <input type="text" maxlength='4' class="card-input" id="cardNumber" style="width: 100px;">
+        <input type="password" maxlength='4' class="card-input" id="cardNumber" style="width: 100px;">
+        <div>
+          <label class="formLabel" for="expiration-month">카드 만료일</label>
+          <input type="text" maxlength='2' class="card-input" id="expiration-month">
+          <input type="text" maxlength='2' class="card-input" id="expiration-year">
+        </div>
+        <div>
+          <label class="formLabel" for="CVC">CVC</label>
+          <input type="text" maxlength='3' class="card-input" id="CVC">
+        </div>
+        <div>
+          <label class="formLabel" for="cardpw">카드 비밀번호</label>
+          <input type="password" maxlength='4' class="card-input" id="cardpw">
+        </div>
+        <input type="submit" value="결제하기" id="submit" />
+      </form>
+
+      <div class="select-body__content select-body--paypal">
+        <script src="https://www.paypalobjects.com/api/button.js?" data-merchant="braintree" data-id="paypal-button"
+          data-button="subscribe" data-color="gold" data-size="medium" data-shape="pill" data-button_type="submit"
+          data-button_disabled="false"></script>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

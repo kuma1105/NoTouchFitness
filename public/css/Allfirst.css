@@ -1,0 +1,641 @@
+body {
+  font: 14px/1.6 "Pretendard", "Apple SD Gothic Neo", "맑은 고딕",
+    "Malgun Gothic", Helvetica, Arial, sans-serif;
+  color: #444;
+  background: #fff;
+}
+
+@font-face {
+  font-family: "Cafe24Ohsquare";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BMYEONSUNG";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMYEONSUNG.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.programDetailBox {
+  float: left;
+  width: 60%;
+}
+
+.programHeader {
+  padding: 20px 50px;
+  /* position: sticky; */
+  top: 80px;
+  float: right;
+  width: 40%;
+}
+
+.programHeader .price {
+  margin-top: 10px;
+}
+
+.programHeader .box {
+  border: 1px solid #eee;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+  border-radius: 4px;
+  margin: 0 0 20px;
+  padding: 25px;
+}
+
+.programHeader .price .discountedprice strong {
+  display: block;
+}
+
+.programHeader .price strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: #123;
+}
+
+.programHeader .price .discountedprice .discountrate {
+  color: #e32438;
+  font-weight: 600;
+  font-size: 18px;
+  font-style: normal;
+}
+
+.programHeader .price .discountedprice .price {
+  margin: 0 5px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #123;
+  letter-spacing: -0.5px;
+}
+
+.programHeader .price .discountedprice .orgprice {
+  font-size: 14px;
+  font-weight: 600;
+  color: #999;
+}
+
+.programHeader .price .discountedprice .price small {
+  font-weight: 600;
+}
+
+.programHeader .price .remaining {
+  margin: 10px 0 20px;
+}
+
+.programHeader .price .remaining .remain {
+  background: #f5f3ff;
+  color: #7266d3;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  line-height: 1;
+  border-radius: 3px;
+}
+
+.programHeader .price .remaining .remain span {
+  font-weight: 800;
+}
+
+.programHeader .price dl {
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.programHeader .price dl dt {
+  float: left;
+}
+
+.programHeader .price dl dd {
+  text-align: right;
+  color: #888;
+  margin: 18px 0;
+}
+
+.programHeader .price dl dd b {
+  color: #444;
+}
+
+.programHeader .price .purchase {
+  border-radius: 4px;
+  height: 48px;
+  line-height: 48px;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+  background: #123;
+  color: #fff;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.programTitleBox {
+  margin: 30px 0 10px;
+}
+
+h4.evade {
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+}
+
+h4 {
+  display: block;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.programTitleBox h3 {
+  font-size: 36px;
+  margin-bottom: 0;
+}
+
+h3 {
+  color: #123;
+  font-family: BMYEONSUNG;
+  line-height: 1.4;
+}
+
+.programTitleBox .meta {
+  font-size: 14px;
+}
+
+.programTitleBox .meta em {
+  font-style: normal;
+  font-weight: 700;
+  margin-right: 10px;
+  color: #174c88;
+}
+
+.programSummary {
+  margin: 40px 0;
+  padding: 10px 30px px;
+  border-left: 1px solid #ddd;
+}
+
+.programSummary .coach {
+  overflow: hidden;
+}
+
+.programSummary .coach img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin-right: 10px;
+  float: left;
+}
+
+.programSummary .coach strong {
+  font-size: 14px;
+  font-weight: 600;
+  display: block;
+  margin-top: 10px;
+}
+
+.programSummary .coach span {
+  font-size: 12px;
+  color: #888;
+}
+
+.programSummary .summary {
+  margin: 20px 0;
+}
+
+.programSummary .summary h5 {
+  font-size: 24px;
+  font-family: BMYEONSUNG;
+  line-height: 34px;
+  color: #111;
+  margin-bottom: 30px;
+}
+
+.programSummary .summary span {
+  display: block;
+}
+
+.programSummary .summary b {
+  font-family: Cafe24Ohsquare;
+}
+
+.programSummary .summary h6 {
+  font-size: 18px;
+  line-height: 26px;
+  color: #111;
+}
+
+.programSummary .summary em {
+  font-style: normal;
+  color: #7266d3;
+}
+
+.programDetailBox .provide {
+  margin: 100px 0 50px;
+}
+
+.programDetailBox .provide h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #174c88;
+  margin: 0 0 15px;
+}
+
+.programDetailBox .provide .row {
+  margin: 0 -5px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.programDetailBox .provide .row .col {
+  padding: 0 5px;
+}
+
+.programDetailBox .provide .provideItem {
+  text-align: center;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.programDetailBox .provide .provideItem strong {
+  color: #123;
+  font-size: 16px;
+  font-family: Cafe24Ohsquare;
+  display: block;
+  margin: 10px 0;
+  line-height: 1;
+}
+
+.programDetailBox .provide .provideItem small {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  line-height: 1.4;
+}
+
+.contentsWrap section {
+  padding: 40px 0 0;
+  margin: 0 0 40px;
+}
+
+.programDetailBox h6.key {
+  font-family: Cafe24Ohsquare;
+  font-size: 24px;
+  color: #111;
+}
+
+.contentsWrap .sc ul {
+  margin-bottom: 1rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.contentsWrap .sc ul li {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-left: 20px;
+  list-style: disc;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  /* list-style: square; */
+}
+
+.contentsWrap section p {
+  color: #444;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.miniFAQ2 {
+  margin: 50px 0;
+  padding: 50px 0;
+}
+
+h4.face {
+  font-size: 24px;
+  font-family: Cafe24Ohsquare;
+  color: #123;
+  margin-bottom: 30px;
+}
+
+.miniFAQ2 li i {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: 25px;
+  top: 25px;
+}
+
+.miniFAQ2 li .answer {
+  padding: 10px 15px 15px 35px;
+  margin: 0 -15px -15px;
+  background: #ddc2f3;
+  border-radius: 50px;
+}
+
+/* --- 여기서부터 아래CSS코딩기능 (동영상 첨부하는 카드기능 추가) --- */
+
+.card-front__heading {
+  font-size: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+/* Main heading for inside page */
+.inside-page__heading {
+  padding-bottom: 1rem;
+  width: 100%;
+}
+
+/* Mixed */
+
+/* For both inside page's main heading and 'view me' text on card front cover */
+.inside-page__heading,
+.card-front__text-view {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-top: 0.2rem;
+}
+
+.inside-page__heading--ski,
+.card-front__text-view--ski {
+  color: #7266d3;
+}
+
+/* Front cover */
+
+.card-front__tp {
+  color: #fafbfa;
+}
+
+/* For pricing text on card front cover */
+.card-front__text-price {
+  font-size: 1.2rem;
+  margin-top: -0.2rem;
+}
+
+/* Back cover */
+
+/* For inside page's body text */
+.inside-page__text {
+  color: #333;
+}
+
+/* Icons ===========================================*/
+
+.card-front__icon {
+  fill: #fafafb;
+  font-size: 3vw;
+  height: 3.25rem;
+  margin-top: -0.5rem;
+  width: 3.25rem;
+}
+
+/* Buttons =================================================*/
+
+.inside-page__btn {
+  background-color: transparent;
+  border: 3px solid;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  overflow: hidden;
+  padding: 0.7rem 0.75rem;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: 90%;
+  z-index: 10;
+}
+
+.inside-page__btn::before {
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scaleY(0);
+  transition: all 0.3s ease;
+  width: 100%;
+  z-index: -1;
+}
+
+/* .inside-page__btn--ski {
+  border-color: #279eb2;
+  color: #279eb2;
+}
+
+.inside-page__btn--ski::before {
+  background-color: #279eb2;
+} */
+
+.inside-page__btn:hover {
+  color: #fafbfa;
+}
+
+.inside-page__btn:hover::before {
+  transform: scaleY(1);
+}
+
+/* Layout Structure=========================================*/
+
+.main {
+  background: linear-gradient(to bottom right, #5f47cc, #f1f0ef);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50vh;
+  width: 100%;
+}
+
+/* Container to hold all cards in one place */
+.card-area {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  justify-content: space-evenly;
+  padding: 1rem;
+}
+
+/* Card ============================================*/
+
+/* Area to hold an individual card */
+.card-section {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+/* A container to hold the flip card and the inside page */
+.card {
+  background-color: rgba(0, 0, 0, 0.05);
+  box-shadow: -0.1rem 1.7rem 6.6rem -3.2rem rgba(0, 0, 0, 0.5);
+  height: 15rem;
+  position: relative;
+  transition: all 1s ease;
+  width: 15rem;
+}
+
+/* Flip card - covering both the front and inside front page */
+
+/* An outer container to hold the flip card. This excludes the inside page */
+.flip-card {
+  height: 15rem;
+  perspective: 100rem;
+  position: absolute;
+  right: 0;
+  transition: all 1s ease;
+  visibility: hidden;
+  width: 15rem;
+  z-index: 100;
+}
+
+/* The outer container's visibility is set to hidden. This is to make everything within the container NOT set to hidden  */
+/* This is done so content in the inside page can be selected */
+.flip-card > * {
+  visibility: visible;
+}
+
+/* An inner container to hold the flip card. This excludes the inside page */
+.flip-card__container {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transition: all 1s ease;
+  width: 100%;
+}
+
+.card-front,
+.card-back {
+  backface-visibility: hidden;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/* Styling for the front side of the flip card */
+
+/* container for the front side */
+.card-front {
+  background-color: #ffffff;
+  height: 15rem;
+  width: 15rem;
+}
+
+/* Front side's top section */
+.card-front__tp {
+  align-items: center;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
+  display: flex;
+  flex-direction: column;
+  height: 12rem;
+  justify-content: center;
+  padding: 0.75rem;
+}
+
+.card-front__tp--ski {
+  background: linear-gradient(to bottom, #ffffff, #5547d7);
+}
+
+/* Front card's bottom section */
+.card-front__bt {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Styling for the back side of the flip card */
+
+.card-back {
+  background-color: #fafbfa;
+  transform: rotateY(180deg);
+}
+
+/* Specifically targeting the <video> element */
+.video__container {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 100% 100%, 0% 100%);
+  /* clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%); */
+  height: auto;
+  min-height: 100%;
+  object-fit: cover;
+  width: 200%;
+}
+
+/* Inside page */
+
+.inside-page {
+  background-color: #fafbfa;
+  box-shadow: inset 20rem 0px 5rem -2.5rem rgba(0, 0, 0, 0.25);
+  height: 100%;
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  transition: all 1s ease;
+  width: 15rem;
+  z-index: 1;
+}
+
+.inside-page__container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+}
+
+/* Functionality ====================================*/
+
+/* This is to keep the card centered (within its container) when opened */
+.card:hover {
+  box-shadow: -0.1rem 1.7rem 6.6rem -3.2rem rgba(0, 0, 0, 0.75);
+  width: 30rem;
+}
+
+/* When the card is hovered, the flip card container will rotate */
+.card:hover .flip-card__container {
+  transform: rotateY(-180deg);
+}
+
+/* When the card is hovered, the shadow on the inside page will shrink to the left */
+.card:hover .inside-page {
+  box-shadow: inset 1rem 0px 5rem -2.5rem rgba(0, 0, 0, 0.1);
+}
+
+/* Footer ====================================*/
+
+.footer {
+  background-color: #333;
+  margin-top: 3rem;
+  padding: 1rem 0;
+  width: 100%;
+}
+
+.footer-text {
+  color: #fff;
+  font-size: 1.2rem;
+  text-align: center;
+}

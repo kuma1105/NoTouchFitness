@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/making.css">
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <%- include('../partials/nav') %>
+
+    <div class="programALL">
+      <h3>
+        <span>
+          <b>No-Touch-Fitness</b>
+        </span>
+        <span>온라인 PT 😊</span>
+      </h3>
+    </div>
+
+    <div class="prmmid">
+      <h4>이런 프로그램은 어때요?</h4>
+      <p>나에게 맞는 운동을 찾아보세요!</p>
+    </div>
+
+    <ul class="cardss">
+
+
+      <% ptShop.forEach((ptShop)=> { %>
+        <li>
+          <a href="<%= ptShop.url %>" class="cards">
+            <img src="<%= ptShop.img%>" class="cards__image" alt="A3" />
+            <div class="cards__overlay">
+              <div class="cards__header">                    
+                <img class="cards__thumb" src="/imgs/b3.png" alt="B3" />
+                <div class="cards__header-text">
+                  <h3 class="cards__title"><%= ptShop.title %></h3>           
+                  <span class="cards__status"><%= ptShop.body %></span>
+                </div>
+              </div>
+              
+              <div class="price">
+                <del>
+                    <i class="commify">
+                        <%=ptShop.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')%>원
+                    </i>
+                </del>
+                <% if (ptShop.dc !== 0) { %>
+                     <b><%=ptShop.dc%>% off</b>
+                <% } %>
+                <div class='strong'>
+                    <i class="commify">
+                        <%=((ptShop.price)/100*ptShop.dc).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')%>원
+                    </i>
+                </div>
+                <span class='remaining'>
+                        남은 자리:
+                    <i class='commify'>
+                        <%=ptShop.remain%>
+                    </i>
+                </span>
+            </div>
+  
+            </div>
+          </a>
+        </li>
+
+        <% }) %>
+       
+    </ul>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

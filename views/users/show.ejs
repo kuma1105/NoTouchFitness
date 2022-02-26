@@ -1,0 +1,275 @@
+<!-- 내정보확인 페이지 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/css/bmi_stack_bar.css">
+
+    <!-- BMI 수정 버튼 div의 CSS -->
+    <style>
+      .bmi-edit-btn-div {
+        margin-top: 20px
+      }
+
+      .total-count {
+        margin-top: 10px;
+        font-size: 24px;
+      }
+
+      .total-bmi {
+        margin-top: 10px;
+        font-size: 24px;
+      }
+    </style>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+    <div class="container p-5">
+
+      <form class="user-form" action="/users" method="post">
+        <fieldset disabled>
+          <div class="total-count">사용자 정보</div>
+          <div class="form-group row">
+            <label for="name" class="col-sm-3 col-form-label">Name</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" id="name" name="name" value="<%= user.name %>">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" id="email" name="email" value="<%= user.email %>">
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+
+      <div>
+        <% if(isAuthenticated && currentUser.id==user.id){ %>
+          <a class="btn btn-dark" href="/users/<%= user.username %>/edit">비밀번호 수정</a>
+          <% } %>
+      </div>
+
+      <hr color="black" size="1">
+
+      <form class="user-form" action="/users" method="post">
+        <fieldset disabled>
+          <div class="total-count">총 횟수</div>
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">스쿼트</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" id="squat" name="squat" value="<%= user.squat %>">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">런지</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" id="squat" name="squat" value="<%= user.lunge %>">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="email" class="col-sm-3 col-form-label">ex1</label>
+            <div class="col-sm-9">
+              <input class="form-control" type="text" id="squat" name="squat" value="<%= user.ex1 %>">
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+
+      <div>
+        <!-- 차트1 -->
+        <canvas id="squatChart" style="width:100%;max-width:600px"></canvas>
+        <!-- 차트2 -->
+        <canvas id="lungeChart" style="width:100%;max-width:600px"></canvas>
+      </div>
+
+      <hr color="black" size="1">
+
+      <!-- BMI 정보 -->
+      <div>
+        <div class="total-bmi">BMI 정보</div>
+        <fieldset disabled>
+          <form class="user-form" action="/users" method="post">
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">나이(만)</label>
+              <div class="col-sm-9">
+                <input class="form-control" type="text" id="squat" name="squat" value="<%= user.age %>">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">키(cm)</label>
+              <div class="col-sm-9">
+                <input class="form-control" type="text" id="squat" name="squat" value="<%= user.height %>">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">몸무게(kg)</label>
+              <div class="col-sm-9">
+                <input class="form-control" type="text" id="squat" name="squat" value="<%= user.weight %>">
+              </div>
+            </div>
+
+            <% if(user.height> 0 && user.weight > 0){ %>
+              <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label">BMI 지수</label>
+                <div class="col-sm-9">
+                  <input class="form-control" type="text" id="squat" name="squat" value="<%= user.bmi %>">
+                </div>
+              </div>
+              <% } %>
+          </form>
+        </fieldset>
+      </div>
+
+      <% if(user.height> 0 && user.weight > 0){ %>
+        <div class="stacked-bar-value">
+          <span style="width:24.5%" class="bar-value-1">bmi</span>
+          <span style="width:27.5%" class="bar-value-2">18.5</span>
+          <span style="width:26%" class="bar-value-3">23</span>
+          <span style="width:10%" class="bar-value-4">25</span>
+        </div>
+
+        <div class="stacked-bar-graph">
+          <span style="width:25%" class="bar-1">저체중</span>
+          <span style="width:25%" class="bar-2">정상</span>
+          <span style="width:25%" class="bar-3">과체중</span>
+          <span style="width:25%" class="bar-4">비만</span>
+        </div>
+        <% } %>
+
+          <% if(user.bmi>= 25){ %>
+            <div>당신의 비만도 결과는 <b>비만</b>입니다.</div>
+            <% } %>
+              <% if(user.bmi>= 23 && user.bmi < 25){ %>
+                  <div>당신의 비만도 결과는 <b>과체중</b>입니다.</div>
+                  <% } %>
+                    <% if(user.bmi>= 18.5 && user.bmi < 23){ %>
+                        <div>당신의 비만도 결과는 <b>정상</b>입니다.</div>
+                        <% } %>
+                          <% if(user.bmi > 0 && user.bmi < 18.5){ %>
+                              <div>당신의 비만도 결과는 <b>저체중</b>입니다.</div>
+                              <% } %>
+
+                                <div class="bmi-edit-btn-div">
+                                  <% if(isAuthenticated && currentUser.id==user.id){ %>
+                                    <a class="btn btn-dark" href="/users/<%= user.username %>/editBMI">BMI 정보 수정</a>
+                                    <% } %>
+                                      <% if(user.height==0 || user.weight==0){ %>
+                                        BMI 계산을 위해 개인정보를 입력해주세요.
+                                        <% } %>
+                                </div>
+
+    </div>
+
+
+
+
+
+    <script>
+      // 스쿼트 차트
+      let squatChart = document.getElementById('squatChart').getContext('2d');
+
+      const NOW_DATE = new Date();
+      let endDate = NOW_DATE.getDate();
+      let todayMonth = NOW_DATE.getMonth();
+
+      var xValues = Array.apply(null, Array(endDate)).map(function (_, i) {
+        return i + 1 + "일";
+      });
+
+      var sqValues = [20, 25, 30, 15, 40, 30, 35, 25, 30, 50, 25, 20, 40, 45, 30, 40, 34, 12, 56, 75, 45, 10];
+      var barColors = ["orange"];
+
+      new Chart("squatChart", {
+        type: "bar",
+        data: {
+          labels: xValues,
+          datasets: [{
+            backgroundColor: 'orange',
+            data: sqValues
+          }]
+        },
+        options: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            // text: "오늘까지 데이터",
+            text: todayMonth + 1 + "월 스쿼트 횟수",
+            fontSize: 24
+          },
+          responsive: false,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontSize: 14,
+              }
+            }]
+          }
+        }
+      });
+
+      // 런지 차트
+      let lungeChart = document.getElementById('lungeChart').getContext('2d');
+      // const NOW_DATE = new Date();
+      // endDate = NOW_DATE.getDate();
+
+      // var xValues = Array.apply(null, Array(endDate)).map(function (_, i) {
+      //   return i + 1;
+      // });
+
+      var lgValues = [30, 25, 40, 30, 35, 60, 50, 25, 30, 35, 40, 15, 50, 55, 30, 35, 22, 25, 30, 15, 40, 45];
+      var barColors = ["orange"];
+
+      new Chart("lungeChart", {
+        type: "line",
+        data: {
+          labels: xValues,
+          datasets: [{
+            borderColor: 'blue',
+            data: lgValues
+          }]
+        },
+        options: {
+          legend: { display: false },
+          title: {
+            display: true,
+            // text: "오늘까지 데이터",
+            text: todayMonth + 1 + "월 런지 횟수",
+            fontSize: 24
+          },
+          responsive: false,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontSize: 14,
+              }
+            }]
+          }
+        }
+      });
+    </script>
+</body>
+
+</html>
+
+<!-- 차트위 개월과 일자는 실시간 변경이 가능 -->
+<!-- 횟수 데이터는 하드 코딩되어 있음 -->

@@ -1,0 +1,416 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.breadcrumb-item {
+  font-size: 0.8em !important;
+}
+
+.ellipsis {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.board-table {
+  table-layout: fixed;
+}
+
+.board-table .author,
+.board-table .date {
+  width: 100px;
+}
+
+.board-table .title-container:hover .title-comments,
+.board-table .title-container:hover .title-text {
+  text-decoration: underline;
+}
+
+.post-body,
+.comment-text {
+  white-space: pre-line;
+}
+
+.post-info {
+  font-size: 0.8em;
+}
+
+.user-form {
+  width: 400px;
+}
+
+.post-index-tool {
+  max-width: 450px;
+}
+
+.post-index-tool input[type="text"] {
+  max-width: 130px;
+}
+
+.highlighted {
+  background-color: yellow;
+}
+
+.comment-edit,
+.comment-reply,
+.comment-edit-enabled .comment-show {
+  display: none;
+}
+
+.comment-edit-enabled .comment-edit,
+.comment-reply-enabled .comment-reply {
+  display: inherit;
+}
+
+/* .jumbotron {
+  height: 500px;
+  background-image: url("/imgs/운동사진.jpg");
+  background-size: cover;
+  padding: 140px;
+  color: black;
+} */
+
+/* 2021/11/23 UPDATE */
+
+.jumbo {
+  height: 550px;
+  background-image: url("/imgs/운동사진.jpg");
+  background-size: cover;
+  padding: 160px;
+  color: black;
+  text-align: center;
+}
+
+/* 간단한소개 */
+#간단한소개 {
+  height: 400px;
+  padding: 120px;
+  background-color: #665e5e;
+  color: white;
+}
+
+/* about */
+#about {
+  height: 500px;
+  padding: 90px;
+}
+
+.about__tech {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.tech {
+  margin: 0 60px;
+}
+
+.tech__icon {
+  width: 170px;
+  height: 170px;
+  font-size: 70px;
+  line-height: 170px;
+  color: #7a6f95;
+  margin: auto;
+}
+
+/* section css */
+.section {
+  padding: 50px;
+  text-align: center;
+  /* max-width: 1200px; */
+  margin: auto;
+}
+
+/* why css */
+#why {
+  background-color: #c8c8c8;
+}
+
+.whyset {
+  display: flex;
+  background-color: #665e5e;
+  color: whitesmoke;
+  margin: 30px 0;
+}
+
+.whyset__left {
+  flex-basis: 100%;
+  padding: 20px 40px;
+}
+
+.whyset__title {
+  color: white;
+}
+
+.graph {
+  margin-bottom: 32px;
+}
+
+.graph__description {
+  display: flex;
+  justify-content: space-between;
+}
+
+.why__bar {
+  height: 3px;
+  background-color: #d2d2d2;
+}
+
+.why__value {
+  width: 70%;
+  height: 3px;
+  background-color: orange;
+}
+
+/* worry */
+.worry__problem {
+  display: flex;
+  justify-content: space-between;
+  margin: 60px 0;
+}
+
+.problem__icon {
+  width: 300px;
+  height: 300px;
+  margin: auto;
+  margin-bottom: 50px;
+  background-size: cover;
+}
+
+.비만 {
+  background-image: url("/imgs/비만1.jpg");
+}
+
+.체형불균형 {
+  background-image: url("/imgs/체형불균형.jpg");
+}
+
+.홈트재밌게 {
+  background-image: url("/imgs/홈트재밌게.jpg");
+}
+
+.worry__description {
+  margin-top: 40px;
+}
+/* contact */
+
+#contact {
+  padding: 0;
+}
+
+.contact {
+  width: 100%;
+  height: 500px;
+  background-color: #3c3c3c;
+}
+
+.contact__top {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  /* padding: 60px; */
+  font-size: 39px;
+}
+
+.contact__left {
+  padding: 60px;
+}
+
+.contact__center {
+  padding-top: 60px;
+  padding-right: 40px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact__center__button {
+  /* border: 1px solid white;
+  border-radius: 40%; */
+  font-family: "Roboto", sans-serif;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+.contact__center__button:hover {
+  background-color: #828282;
+  box-shadow: 0px 15px 20px rgba(115, 126, 121, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+.contact__right {
+  padding: 60px;
+  padding-right: 230px;
+}
+
+.contact__bottom {
+  color: white;
+  display: flex;
+  margin-top: 90px;
+}
+
+.contact__bottom__left {
+  margin-left: 100px;
+}
+
+.contact__bottom__right {
+  margin-left: 720px;
+}
+
+/* ---2021/11/30--- */
+
+div {
+  box-sizing: border-box;
+}
+
+.why__card {
+  height: 2000px;
+  margin-top: 80px;
+  margin-bottom: 160px;
+}
+
+.why__box img {
+  display: block;
+  margin: auto;
+  width: 500px;
+  height: 500px;
+}
+
+.why__box {
+  position: sticky;
+  top: 50px;
+  margin-top: 50px;
+}
+
+.worry__title {
+  font-size: 30px;
+}
+
+#trainer {
+  background-color: #c8c8c8;
+}
+
+.trainer {
+  overflow: hidden;
+}
+
+.trainer__top h3 {
+  margin: 20px;
+}
+
+.trainer__bottom {
+  position: relative;
+  width: 300vw;
+  transition: transform 1s;
+}
+
+.trainer__bottom__slidebox img {
+  width: 100%;
+}
+
+.trainer__bottom__slidebox {
+  width: 30vw;
+  float: left;
+  position: relative;
+}
+
+.trainer__bottom__description {
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transition-timing-function: ease-in;
+  transform: translateY(10px);
+  transition: all 300ms ease-in;
+}
+
+.trainer__bottom__slidebox:hover .trainer__bottom__description {
+  opacity: 0.6;
+  transform: translateY(0px);
+}
+
+/* .trainer__bottom__description h3,
+span {
+  color: white;
+} */
+
+.trainer__bottom__description span {
+  color: white;
+}
+
+.trainer__bottom__description h3 {
+  color: white;
+}
+
+.trainer__bottom__description h3::after {
+  content: "";
+  display: block;
+  position: relative;
+  left: 50%;
+  width: 200px;
+  height: 2px;
+  background-color: white;
+  margin-left: -100px;
+  margin-top: 8px;
+}
+
+.trainer__bottom__slidebox img {
+  width: 100%;
+  height: 400px;
+  padding: 20px;
+}
+
+.slide-next {
+  position: absolute;
+  margin-top: 200px;
+  right: 0;
+}
+
+.slide-before {
+  position: absolute;
+  margin-top: 200px;
+  left: 0;
+}
+
+.best {
+  margin: 40px;
+}
+
+.best__photo {
+  display: flex;
+  margin: 32px 0;
+}
+
+.best__person {
+  width: 150px;
+  height: 150px;
+  border-radius: 10%;
+  margin: 12px;
+  margin-top: 0px;
+}
+
+.best__photo__speech {
+  padding: 18px;
+  width: 100%;
+  background-color: #c8c8c8;
+}
+
+.best__photo__speech__name {
+  margin-bottom: 0px;
+}

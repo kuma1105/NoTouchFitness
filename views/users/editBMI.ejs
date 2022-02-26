@@ -1,0 +1,72 @@
+<!-- BMI 정보(나이, 키, 몸무게) 수정 페이지 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+    <div class="container p-5">
+
+      <form action="/users/<%= username %>/editBMI" method="post">
+
+        <div class="form-group row">
+          <label for="username" class="col-sm-3 col-form-label">나이(만)</label>
+          <div class="col-sm-9">
+            <input type="text" id="username" name="username" value="<%= user.age %>"
+              class="form-control <%= (errors.username)?'is-invalid':'' %>">
+            <% if(errors.username){ %>
+              <span class="invalid-feedback">
+                <%= errors.username.message %>
+              </span>
+              <% } %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="username" class="col-sm-3 col-form-label">키(cm)</label>
+          <div class="col-sm-9">
+            <input type="text" id="username" name="username" value="<%= user.height %>"
+              class="form-control <%= (errors.username)?'is-invalid':'' %>">
+            <% if(errors.username){ %>
+              <span class="invalid-feedback">
+                <%= errors.username.message %>
+              </span>
+              <% } %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="username" class="col-sm-3 col-form-label">몸무게(kg)</label>
+          <div class="col-sm-9">
+            <input type="text" id="username" name="username" value="<%= user.weight %>"
+              class="form-control <%= (errors.username)?'is-invalid':'' %>">
+            <% if(errors.username){ %>
+              <span class="invalid-feedback">
+                <%= errors.username.message %>
+              </span>
+              <% } %>
+          </div>
+        </div>
+
+        <% if(errors.unhandled){ %>
+          <div class="alert alert-danger">
+            <%= errors.unhandled %>
+          </div>
+          <% } %>
+
+            <div class="buttons">
+              <a class="btn btn-dark" href="/users/<%= username %>">Back</a>
+              <button type="submit" class="btn btn-dark">Submit</button>
+              <!-- { username: [ '나이 값', '키 값', '몸무게 값' ] } -->
+            </div>
+
+      </form>
+
+    </div>
+</body>
+
+</html>
