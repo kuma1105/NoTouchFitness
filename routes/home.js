@@ -118,10 +118,8 @@ router.get('/onlinept/:onlinePg/purchase', function (req, res) {
     // console.log(path[3]);
     PtShop.find({ engTitle: path[2] }, (err, ptShop) => {
       if (err) return res.json(err);
-      // console.log(ptShop);
-      const title = ptShop[0].title;
-      // console.log(title);
-      res.render('home/purchase_page', { title: title });
+      const pt = ptShop[0]
+      res.render('home/purchase_page', { pt : pt });
     })
   } else {
     req.flash('errors', { login: '로그인을 먼저 해주세요!' });
@@ -134,8 +132,12 @@ router.get('/onlinept/:onlinePg', function (req, res) {
   const pathArray = req.path.split('/');
   const pos1 = pathArray[2].indexOf('Pg');
   const result = pathArray[2].slice(0, pos1);
-  console.log(result);
-  res.render('onlinePt/' + result + 'Pg');
+  console.log("/onlinept/:onlinePg " + result);
+  PtShop.find({ engTitle: result }, (err, ptShop) => {
+    if (err) return res.json(err);
+    const pt = ptShop[0]
+    res.render('onlinePt/onlinePg', { pt : pt });
+  })
 });
 
 

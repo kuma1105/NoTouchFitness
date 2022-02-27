@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/Allfirst.css">
+  <%- include('../partials/head') %>
+</head>
+
+<body>
+  <%- include('../partials/nav') %>
+
+    <!-- <div class="halfdiv"> -->
+
+    <div class="programHeader">
+      <div class="box price">
+        <div class="discountedprice">
+          <strong>할인가</strong>
+          <em class="discountrate">
+            <%= pt.dc %>%
+          </em>
+          <span class="price">
+            <span class="commify">
+              <%= ((pt.price)/100*pt.dc).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',' ) %>
+            </span>
+            <small>원</small>
+          </span>
+          <del class="orgprice commify">
+            <%= pt.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',' ) %>
+          </del>
+        </div>
+        <div class="remaining">
+          <span class="remain">
+            남은자리
+            <span class="commify">
+              <%= pt.remain %>
+            </span>
+          </span>
+        </div>
+        <dl>
+          <dt>카드 혜택</dt>
+          <dd>무이자할부 최대 6개월</dd>
+          <dt>1회당 가격</dt>
+          <dd>
+            <b><span class="commify">
+                <%= ((pt.price)/100*pt.dc).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',' ) %>
+              </span>원</b>
+          </dd>
+          <dt>제공</dt>
+          <dd>맞춤플랜 + 운동영상 + 1:1피드백</dd>
+        </dl>
+        <a class="purchase" href="/onlinept/<%= pt.engTitle %>/purchase">신청하기</a>
+      </div>
+
+      <!-- ---여기서부터 아래 코딩은 동영상 첨부하는 카드기능--- -->
+      <main class="main">
+
+        <section class="card-area">
+
+          <!-- Card: 필라테스 -->
+          <section class="card-section">
+            <div class="card">
+              <div class="flip-card">
+                <div class="flip-card__container">
+                  <div class="card-front">
+                    <div class="card-front__tp card-front__tp--ski">
+                      <!-- <img src="/imgs/b1.png" alt="B1" /> -->
+
+                      <h2 class="card-front__heading">
+                        <%= pt.title %> 담당
+                      </h2>
+                      <p class="card-front__text-price">
+                        코치 운동영상
+                      </p>
+                    </div>
+
+                    <div class="card-front__bt">
+                      <p class="card-front__text-view card-front__text-view--ski">
+                        감상해주세요^^
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="card-back">
+                    <video class="video__container" autoplay muted loop>
+                      <!-- <source class="video__media" src="https://player.vimeo.com/external/195913085.sd.mp4?s=7c12f7a83de62a8900fd2ae049297070b9bc8a54&profile_id=164&oauth2_token_id=574477611" type="video/mp4"> -->
+                      <source class="video__media" src="<%= pt.mp4Url%>" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+              </div>
+
+              <div class="inside-page">
+                <div class="inside-page__container">
+                  <h3 class="inside-page__heading inside-page__heading--ski">
+                    <!-- 필라테스 -->
+                  </h3>
+                  <p class="inside-page__text">
+                    <!-- 이곳에는 운동하는 영상을 첨부할 계획입니다 ^^ -->
+                  </p>
+                  <!-- <a href="#" class="inside-page__btn inside-page__btn--ski">View deals</a> -->
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </section>
+        <!-- <footer class="footer">
+                <p class="footer-text">&copy; 2021 Created by Maza designDev</p>
+            </footer> -->
+      </main>
+      <!-- ---여기까지 동영상 첨부된 카드 기능이고 pricebox는 카드div 윗쪽에 코딩되어있음!--- -->
+
+    </div>
+
+    <!-- --------윗부분의 코드는 pricebox, 밑부분의 코드는 detail form-------- -->
+
+    <div class="col-lg-7 programDetailBox">
+
+      <div class="programTitleBox">
+        <h4 class="evade">
+          <%= pt.title %>
+        </h4>
+        <h3 id="text-class-title">
+          <%= pt.title %>와 친해지기
+        </h3>
+        <div class="meta">
+          <em class="period">2주 / 주3회 / 20분</em>
+        </div>
+      </div>
+
+      <div class="programSummary">
+        <div class="coach">
+          <img class="profilePic" src="/imgs/b3.png" alt="B3" />
+          <strong>운동 좋아!</strong>
+          <span>동기부여</span>
+        </div>
+        <div class="summary">
+          <h5>
+            <span>
+              <b>초급자</b>
+              분들을 위한
+            </span>
+            <span>
+              <b>
+                <%= pt.title %>
+              </b>
+              프로그램입니다.
+            </span>
+          </h5>
+          <h6>
+            <span>
+              <b>
+                <%= pt.title %> 담당
+              </b>
+              코치는
+              <em>동기부여</em>
+              가 장점이에요~
+            </span>
+            <span>
+              <em>끝까지 포기하지 않고 운동할 수 있게</em>
+              만들어드려요!
+            </span>
+          </h6>
+        </div>
+      </div>
+
+      <div class="provide">
+        <h4 class="evade">프로그램 제공</h4>
+        <h5>커리큘럼</h5>
+        <div class="row">
+          <div class="col col-md-4">
+            <div class="provideItem">
+              <img src="/imgs/q1.png" alt="Q1" />
+              <strong>2주 운동 플랜</strong>
+              <small>
+                <span>맞춤</span>
+                <span>운동 플랜과 워크아웃</span>
+              </small>
+            </div>
+          </div>
+          <div class="col col-md-4">
+            <div class="provideItem">
+              <img src="/imgs/q2.png" alt="Q2" />
+              <strong>총 6회 운동</strong>
+              <small>
+                <span>회차별</span>
+                <span>맞춤 운동 루틴</span>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contentsWrap">
+        <section>
+          <div class="sc">
+            <h4 class="evade">대상</h4>
+            <h6 class="key">초급</h6>
+            <div>
+              <ul>
+                <li>
+                  <strong>
+                    <%= pt.title %> 효과
+                  </strong>
+                  를 제대로 느껴보고 싶으신 분들
+                </li>
+                <li>
+                  집에서
+                  <strong>간단한 코어운동</strong>
+                  을 배우고 싶으신 분들
+                </li>
+                <li>
+                  <%= pt.title %>의 기초를 익히고 싶은
+                    <strong>입문자분들</strong>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="sc">
+            <h4 class="evade">목표</h4>
+            <h6 class="key"> 코어 강화,체형 교정,체력 향상 </h6>
+            <div>
+              <p>
+                <%= pt.title %>의
+                  <strong>기본기</strong>
+                  를 익히자!
+              </p>
+              <p>
+                수업에 들어가기전 반드시 알고 가야하는
+                <strong>핵심</strong>
+                만 쏙쏙 알려드려요!
+                <br>
+                1주 3회 20분 구성으로 단,
+                <strong>2주</strong>
+                만에 전반적인
+                <strong>
+                  <%= pt.title %>의 기초
+                </strong>
+                를 배울 수 있습니다 :)
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="miniFAQ2">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7">
+              <h4 class="face">자주 묻는 질문</h4>
+              <ul>
+                <li>
+                  <!-- <a href="#" class> -->
+                  <!-- <b>Q.</b> -->
+                  프로그램을 결제했는데 운동은 어떻게 시작하나요?
+                  <!-- <i class>
+                          <span class="bar2"></span>
+                        </i> -->
+                  <!-- </a> -->
+                  <div class="answer" style="display: block;">
+                    <!-- <i>A.</i> -->
+                    코치와
+                    <b>첫 상담</b>
+                    하세요!
+                    <br>
+                    상담 후 코치가 맞춤 커리큘럼을 직접 만들어 드립니다!
+                    <br>
+                    맞춤 커리큘럼이 확정되면, 일정을 직접 설정하고 운동을 시작 할 수 있습니다.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- </div> -->
+
+</body>
+
+</html>

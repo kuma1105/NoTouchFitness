@@ -33,6 +33,10 @@ const PtShopSchema = mongoose.Schema({
     url: {
         type: String,
         required: [true, '프로그램 url']
+    },
+    mp4Url: {
+        type: String,
+        required: [true, '프로그램 동영상 url']
     }
 });
 

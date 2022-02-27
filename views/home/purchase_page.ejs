@@ -10,9 +10,11 @@
 <body>
   <div class="sub-body">
     <header class="header">
-      <h1 class="price"><span class="price__dollar">₩</span>10,000<span class="price__time">/ 월</span></h1>
+      <h1 class="price"><span class="price__dollar">₩</span>
+        <%= ((pt.price)/100*pt.dc).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',' ) %> <span class="price__time">/ 월</span>
+      </h1>
       <p class="desc">
-        <%= title %> 패키지
+        <%= pt.title %> 패키지
       </p>
     </header>
 
