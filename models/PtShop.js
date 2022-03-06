@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 const PtShopSchema = mongoose.Schema({
     title: {
         type: String,
-        required: [true, '제목을 입력해주세요!']
+        required: [true, 'PT프로그램 한글']
     },
     engTitle:{
         type: String,
-        required: [true, 'title의 영문, url 파라미터에 사용']
+        required: [true, 'PT프로그램 영문, url 파라미터에 사용']
     },
     body: {
         type: String,

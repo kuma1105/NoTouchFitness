@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 var User = require('../models/User');
+var Cart = require('../models/Cart');
+var PtShop = require('../models/PtShop');
 var util = require('../util');
 
 // New
@@ -30,7 +32,6 @@ router.post('/', function (req, res) {
 router.get('/:username', util.isLoggedin, checkPermission, function (req, res) {
   User.findOne({ username: req.params.username }, function (err, user) {
     if (err) return res.json(err);
-    console.log(user);
     res.render('users/show', { user: user });
   });
 });
@@ -78,6 +79,7 @@ router.post('/:username/editBMI', util.isLoggedin, checkPermission, function (re
       user.height = req.body.username[1];
       user.weight = req.body.username[2];
       user.bmi = (user.weight / ((user.height / 100)**2)).toFixed(1);
+      console.log(user);
 
       // save updated user
       user.save(function (err, user) {
@@ -93,17 +95,12 @@ router.post('/:username/editBMI', util.isLoggedin, checkPermission, function (re
 
 // 장바구니 페이지
 router.get('/:username/cart', util.isLoggedin, checkPermission, function (req, res) {
-  var user = req.flash('user')[0];
-  var errors = req.flash('errors')[0] || {};
-  if (!user) {
-    User.findOne({ username: req.params.username }, function (err, user) {
+  PtShop.find({}, function (err, ptShop){
+    Cart.find({ username: req.params.username }, function (err, cart) {
       if (err) return res.json(err);
-      res.render('users/cart', { username: req.params.username, user: user, errors: errors });
+      res.render('users/cart', { cart : cart });
     });
-  }
-  else {
-    res.render('users/cart', { username: req.params.username, user: user, errors: errors });
-  }
+  });
 });
 
 // update

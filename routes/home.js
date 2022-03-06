@@ -3,7 +3,8 @@ const router = express.Router();
 const passport = require('../config/passport');
 const util = {};
 var User = require('../models/User');
-const PtShop = require('../models/PtShop');
+var PtShop = require('../models/PtShop');
+var Cart = require('../models/Cart');
 
 util.isLoggedin = function (req, res, next) {
   //req.isAuthenticated()는 passport에서 제공하는 함수로, 현재 로그인이 되어있는지 아닌지를true,false로 return합니다.
@@ -88,17 +89,38 @@ router.get('/logout', function (req, res) {
 // 구매
 // https://beausty23.tistory.com/68
 // 로그인 후 passport로 저장된? 세션 정보는 req.user로 읽을 수 있다.
-router.post('/purchase', function (req, res) {
+router.post('/:onlinePg/purchase', function (req, res) {
   console.log("구매완료");
-  User.findOne({ username: req.user.username }, function (err, user) {
-    const username = req.user.username;
-    res.send(`<script>alert('결제가 완료되었습니다.');location.href='/users/${username}/cart';</script>`);
-  });
+  const onlinePg = req.params.onlinePg;
+  User.findOne({ username: req.user.username }).exec(function (err, user) {
+    const name = user.name;
+    const uname = req.user.username;
+    
+    PtShop.findOne({ engTitle: onlinePg }).exec(function (err, ptShop) {
+      // console.log(ptShop);
+      const ptTitle = ptShop.title;
+      const img = ptShop.img;
+      const category = ptShop.body;
+
+      let cart = new Cart({
+        username : uname,
+        name : name,
+        ptTitle : ptTitle,
+        ptEngTitle : onlinePg,
+        img : img,
+        category : category,
+        mlUrl : "/onlinept/ml/" + onlinePg
+      })
+      cart.save();
+
+    })
+    res.send(`<script>alert('결제가 완료되었습니다.');location.href='/users/${uname}/cart';</script>`);
+  })
 });
 
-router.get('/purchaseSuccess', function (req, res) {
-  console.log(req.user);
-})
+// router.get('/purchaseSuccess', function (req, res) {
+//   console.log(req.user);
+// })
 
 // 온라인PT nav 메뉴
 router.get('/onlinept', function (req, res) {
@@ -119,7 +141,7 @@ router.get('/onlinept/:onlinePg/purchase', function (req, res) {
     PtShop.find({ engTitle: path[2] }, (err, ptShop) => {
       if (err) return res.json(err);
       const pt = ptShop[0]
-      res.render('home/purchase_page', { pt : pt });
+      res.render('home/purchase_page', { pt: pt });
     })
   } else {
     req.flash('errors', { login: '로그인을 먼저 해주세요!' });
@@ -136,7 +158,7 @@ router.get('/onlinept/:onlinePg', function (req, res) {
   PtShop.find({ engTitle: result }, (err, ptShop) => {
     if (err) return res.json(err);
     const pt = ptShop[0]
-    res.render('onlinePt/onlinePg', { pt : pt });
+    res.render('onlinePt/onlinePg', { pt: pt });
   })
 });
 

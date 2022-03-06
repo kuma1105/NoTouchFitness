@@ -21,6 +21,10 @@
         margin-top: 10px;
         font-size: 24px;
       }
+      
+      .bmi-word {
+        font-size: 24px;
+      }
     </style>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -153,16 +157,16 @@
         <% } %>
 
           <% if(user.bmi>= 25){ %>
-            <div>당신의 비만도 결과는 <b>비만</b>입니다.</div>
+            <div>당신의 비만도 결과는 <b class="bmi-word">비만</b>입니다.</div>
             <% } %>
               <% if(user.bmi>= 23 && user.bmi < 25){ %>
-                  <div>당신의 비만도 결과는 <b>과체중</b>입니다.</div>
+                  <div>당신의 비만도 결과는 <b class="bmi-word">과체중</b>입니다.</div>
                   <% } %>
                     <% if(user.bmi>= 18.5 && user.bmi < 23){ %>
-                        <div>당신의 비만도 결과는 <b>정상</b>입니다.</div>
+                        <div>당신의 비만도 결과는 <b class="bmi-word">정상</b>입니다.</div>
                         <% } %>
                           <% if(user.bmi > 0 && user.bmi < 18.5){ %>
-                              <div>당신의 비만도 결과는 <b>저체중</b>입니다.</div>
+                              <div>당신의 비만도 결과는 <b class="bmi-word">저체중</b>입니다.</div>
                               <% } %>
 
                                 <div class="bmi-edit-btn-div">
