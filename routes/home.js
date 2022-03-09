@@ -29,7 +29,7 @@ function checkPermission(req, res, next) {
 
 // Home
 router.get('/', function (req, res) {
-  console.log(req.isAuthenticated());
+  console.log("로그인 여부 : " + req.isAuthenticated());
   if (req.isAuthenticated()) {
     // 로그인 상태
     res.render('home/welcome', { cart: true });
