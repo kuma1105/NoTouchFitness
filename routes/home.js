@@ -95,7 +95,7 @@ router.post('/:onlinePg/purchase', function (req, res) {
   User.findOne({ username: req.user.username }).exec(function (err, user) {
     const name = user.name;
     const uname = req.user.username;
-    
+
     PtShop.findOne({ engTitle: onlinePg }).exec(function (err, ptShop) {
       // console.log(ptShop);
       const ptTitle = ptShop.title;
@@ -103,13 +103,13 @@ router.post('/:onlinePg/purchase', function (req, res) {
       const category = ptShop.body;
 
       let cart = new Cart({
-        username : uname,
-        name : name,
-        ptTitle : ptTitle,
-        ptEngTitle : onlinePg,
-        img : img,
-        category : category,
-        mlUrl : "/onlinept/ml/" + onlinePg
+        username: uname,
+        name: name,
+        ptTitle: ptTitle,
+        ptEngTitle: onlinePg,
+        img: img,
+        category: category,
+        mlUrl: "/onlinept/ml/" + onlinePg
       })
       cart.save();
 
@@ -173,6 +173,10 @@ router.get('/onlinept/ml/squat', function (req, res) {
 
 router.get('/onlinept/ml/lunge', function (req, res) {
   res.render('ml/lunge');
+});
+
+router.get('/onlinept/ml/pullup', function (req, res) {
+  res.render('ml/pullup');
 });
 
 
