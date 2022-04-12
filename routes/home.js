@@ -179,6 +179,22 @@ router.get('/onlinept/ml/pullup', function (req, res) {
   res.render('ml/pullup');
 });
 
+router.get('/onlinept/ml/vraise', function (req, res) {
+  res.render('ml/vraise');
+});
+
+router.get('/onlinept/ml/sidelr', function (req, res) {
+  res.render('ml/sidelr');
+});
+
+router.get('/onlinept/ml/shoulder', function (req, res) {
+  res.render('ml/shoulder');
+});
+
+router.get('/onlinept/ml/jumpingjack', function (req, res) {
+  res.render('ml/jumpingjack');
+});
+
 
 module.exports = router;
 

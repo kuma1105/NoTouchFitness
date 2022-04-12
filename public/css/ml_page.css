@@ -33,12 +33,12 @@ body {
 
 /* labelContainer.childNodes[i].innerHTML = classPrediction */
 #label-container {
+  position: fixed;
   font-size: 25px;
   font-weight: bold;
   text-align: center;
-  position: relative;
-  left: 11.8in;
-  bottom: 6in;
+  left: 70%;
+  bottom: 40%;
   border-radius: 10px;
   box-shadow: 0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.6);
   background: #413951;
@@ -50,8 +50,8 @@ body {
 
 .frame {
   position: absolute;
-  top: 48.2%;
-  left: 67%;
+  top: 53.5%;
+  left: 65%;
   width: 250px;
   height: 250px;
   margin-top: -200px;
