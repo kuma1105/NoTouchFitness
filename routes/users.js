@@ -51,6 +51,7 @@ router.get('/:username/edit', util.isLoggedin, checkPermission, function (req, r
   }
 });
 
+
 // 내 BMI 정보 수정 페이지
 router.get('/:username/editBMI', util.isLoggedin, checkPermission, function (req, res) {
   var user = req.flash('user')[0];
@@ -78,7 +79,7 @@ router.post('/:username/editBMI', util.isLoggedin, checkPermission, function (re
       user.age = req.body.username[0];
       user.height = req.body.username[1];
       user.weight = req.body.username[2];
-      user.bmi = (user.weight / ((user.height / 100)**2)).toFixed(1);
+      user.bmi = (user.weight / ((user.height / 100) ** 2)).toFixed(1);
       console.log(user);
 
       // save updated user
@@ -95,10 +96,10 @@ router.post('/:username/editBMI', util.isLoggedin, checkPermission, function (re
 
 // 장바구니 페이지
 router.get('/:username/cart', util.isLoggedin, checkPermission, function (req, res) {
-  PtShop.find({}, function (err, ptShop){
+  PtShop.find({}, function (err, ptShop) {
     Cart.find({ username: req.params.username }, function (err, cart) {
       if (err) return res.json(err);
-      res.render('users/cart', { cart : cart });
+      res.render('users/cart', { cart: cart });
     });
   });
 });
@@ -128,6 +129,38 @@ router.put('/:username', util.isLoggedin, checkPermission, function (req, res, n
       });
     });
 });
+
+// 수업 페이지
+router.get('/:username/ptClass', util.isLoggedin, checkPermission, function (req, res) {
+  res.render('users/ptClass');
+});
+
+// 채팅 페이지
+router.get(
+  "/:username/chatting",
+  util.isLoggedin,
+  checkPermission,
+  function (req, res) {
+    var user = req.flash("user")[0];
+    var errors = req.flash("errors")[0] || {};
+    if (!user) {
+      User.findOne({ username: req.params.username }, function (err, user) {
+        if (err) return res.json(err);
+        res.render("users/chatting", {
+          username: req.params.username,
+          user: user,
+          errors: errors,
+        });
+      });
+    } else {
+      res.render("users/chatting", {
+        username: req.params.username,
+        user: user,
+        errors: errors,
+      });
+    }
+  }
+);
 
 module.exports = router;
 

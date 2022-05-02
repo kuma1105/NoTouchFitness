@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('../config/passport');
 const util = {};
+const html2canvas = require('html2canvas');
 var User = require('../models/User');
 var PtShop = require('../models/PtShop');
 var Cart = require('../models/Cart');
@@ -39,6 +40,14 @@ router.get('/', function (req, res) {
   }
 });
 
+// 예시: 어깨 자세
+router.get('/edge', function (req, res) {
+  res.render('ml/edge');
+})
+
+// router.post('/capture', function (req, res) {
+
+// })
 
 // Login
 router.get('/login', function (req, res) {
@@ -50,6 +59,13 @@ router.get('/login', function (req, res) {
   });
 });
 
+router.get('/fetch', function (req, res) {
+  res.json(200, {
+    name: 1,
+    age: 2,
+    fetch상태: "정상"
+  })
+})
 
 // Post Login
 router.post('/login',
@@ -84,6 +100,14 @@ router.post('/login',
 router.get('/logout', function (req, res) {
   req.logout();
   res.redirect('/');
+});
+
+// 로그인 안하고 채팅들어갈 때의 처리
+router.get("/socket", function (req, res) {
+  if (!req.isAuthenticated()) {
+    req.flash("errors", { login: "로그인을 먼저 해주세요!" });
+    res.redirect("/login");
+  }
 });
 
 // 구매
@@ -194,6 +218,15 @@ router.get('/onlinept/ml/shoulder', function (req, res) {
 router.get('/onlinept/ml/jumpingjack', function (req, res) {
   res.render('ml/jumpingjack');
 });
+
+router.get('/onlinept/ml/plank', function (req, res) {
+  res.render('ml/plank');
+});
+
+router.get('/onlinept/ml/wallsquat', function (req, res) {
+  res.render('ml/wallsquat');
+});
+
 
 
 module.exports = router;

@@ -11,6 +11,8 @@ const https = require('https');
 const path = require('path');
 const fs = require('fs');
 
+const SocketIO = require('socket.io');
+
 // DB setting
 const db = mongoose.connection;
 mongoose.connect('mongodb://localhost:27017/NoTouchFitness');
@@ -48,17 +50,63 @@ app.use('/posts', util.getPostQueryString, require('./routes/posts'));
 app.use('/users', require('./routes/users'));
 app.use('/comments', util.getPostQueryString, require('./routes/comments'));
 
+const sslServer = https.createServer(
+  {
+    key: fs.readFileSync(path.join(__dirname, "cert", "key.pem")),
+    cert: fs.readFileSync(path.join(__dirname, "cert", "cert.pem")),
+  },
+  app
+);
+
+const { Server } = require("socket.io");
+const io = new Server(sslServer);
+
+sslServer.listen(3000, () =>
+  console.log(
+    "Secure server 🎊 on port 3000(주소앞에 https:// 추가해주어야 합니다!)"
+  )
+);
+
+io.on("connection", function (socket) {
+  socket.on("chatting", (data) => {
+    const { name, msg } = data;
+    io.emit("chatting", {
+      name,
+      msg,
+      time: new Date().getHours() + "시 " + new Date().getMinutes() + "분",
+    });
+  });
+
+  // 규혁이꺼
+  socket.on("join_room", (roomName) => {
+    socket.join(roomName);
+    socket.to(roomName).emit("welcome");
+  });
+  socket.on("offer", (offer, roomName) => {
+    socket.to(roomName).emit("offer", offer);
+  });
+  socket.on("answer", (answer, roomName) => {
+    socket.to(roomName).emit("answer", answer);
+  });
+  socket.on("ice", (ice, roomName) => {
+    socket.to(roomName).emit("ice", ice);
+  });
+});
+
+
+
 
 
 // Port setting const port = 3000; app.listen(port, function(){
 // console.log('server on! http://localhost:'+port); });
 
-const sslServer = https.createServer({
-  key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem'))
-}, app)
+// 20220418
+// const sslServer = https.createServer({
+//   key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+//   cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem'))
+// }, app)
 
-sslServer.listen(
-  3000,
-  () => console.log('Secure server 🎊 on port 3000(주소앞에 https:// 추가해주어야 합니다!)')
-);
+// sslServer.listen(
+//   3000,
+//   () => console.log('Secure server 🎊 on port 3000(주소앞에 https:// 추가해주어야 합니다!)')
+// );

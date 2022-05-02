@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/socket.css" />
+    <title>Socket</title>
+  </head>
+  <body>
+    <!-- <script src="//code.jquery.com/jquery-3.4.1.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+
+    <div class="wrapper">
+      <form class="user-form" action="/users" method="post">
+        <div class="user-container">
+          <label for="nickname">채팅방</label>
+          <input
+            type="text"
+            id="nickname"
+            name="nickname"
+            value="<%= user.name %>"
+            style="display: none"
+          />
+        </div>
+      </form>
+      <div class="display-container">
+        <ul class="chatting-list"></ul>
+      </div>
+      <div class="input-container">
+        <span>
+          <input type="text" class="chatting-input" />
+          <button class="send-button">전송</button>
+        </span>
+      </div>
+    </div>
+    <script src="/js/chat.js"></script>
+  </body>
+</html>

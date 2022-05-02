@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/css/ptClass.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>notouchfitness</title>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+          <div class="header__back">
+            <i class="fas fa-angle-left"></i>
+          </div>
+          <h3>Video Chat</h2>
+        </div>
+      </div>  
+    <div id="welcome">
+    <form>
+        <input type="text", required, placeholder="방번호">
+        <button>입장하세요</button>
+      </form>
+    </div>
+    <div id="call">
+        <div id="myStream">
+        <video id="myFace", width="500", height="500", autoplay>
+        </video>
+        <button id="mute">Mute</button>
+        <button id="camera">Turn camera Off</button>
+        <select id="cameras"></select>
+        <video id="peerFace", width="500", height="500", autoplay>
+        </video>
+        <button id="mute">Mute</button>
+        <button id="camera">Turn camera Off</button>
+        <select id="cameras"></select>
+    </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/ptClass.js"></script>
+</body>
+</html>

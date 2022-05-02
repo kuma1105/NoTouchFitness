@@ -1,0 +1,282 @@
+<html>
+  <head>
+    <script src="/js/GET_2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet@2.2.2/dist/posenet.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@3.11.0/dist/tf-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter@3.11.0/dist/tf-converter.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@3.11.0/dist/tf-backend-webgl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@0.0.6/dist/pose-detection.min.js"></script>
+
+    <!-- <script src="https://unpkg.com/@tensorflow/tfjs-core@2.4.0/dist/tf-core.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-converter@2.4.0/dist/tf-converter.js"></script>
+    <script src="https://unpkg.com/@tensorflow/tfjs-backend-webgl@2.4.0/dist/tf-backend-webgl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection"></script> -->
+
+    <style>
+      /* 이미지에 캔버스를 겹쳐서 그릴때는 아래 주석 해제 */
+      canvas {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
+
+      video {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+      }
+
+      .edgeText {
+        font-size: 32px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <video
+      id="video"
+      width="640"
+      height="480"
+      autoplay
+      muted
+      playsinline
+    ></video>
+    <canvas id="canvas"></canvas>
+    <div class="edgeText">
+      현재 회원님의 어깨 자세: <span id="shoulderStatus"></span>
+    </div>
+    <button id="btn1">버튼</button>
+  </body>
+  <!-- Place your code in the script tag below. You can also use an external .js file -->
+  <script>
+    var shoulderStatus = document.getElementById("shoulderStatus");
+
+    const video = document.getElementById("video");
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+
+    var dist = 0;
+    var angle = 0;
+
+    const status = {
+      good: "정상",
+      bad: "비대칭",
+    };
+
+    // let maskimg = new Image();
+    // maskimg.src = "images/ironman_sm.png";
+
+    // let handimg = new Image();
+    // handimg.src = "images/ironman_Hand.png";
+
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: false })
+      .then(function (stream) {
+        video.srcObject = stream;
+      });
+
+    posenet.load().then((model) => {
+      video.onloadeddata = (e) => {
+        predict();
+      };
+      function predict() {
+        model.estimateSinglePose(video).then((pose) => {
+          canvas.width = video.width;
+          canvas.height = video.height;
+          drawKeypoints(pose.keypoints, 0.6, context);
+          drawSkeleton(pose.keypoints, 0.6, context);
+          console.log(pose.keypoints);
+          // for (let i = 0; i < pose.keypoints.length; i++) {
+          //   if (pose.keypoints[i].part === "rightEar")
+          //     context.drawImage(
+          //       maskimg,
+          //       pose.keypoints[i].position.x - 20,
+          //       pose.keypoints[i].position.y - (maskimg.width / 2 + 30)
+          //     );
+          //   else if (pose.keypoints[i].part === "rightWrist")
+          //     context.drawImage(
+          //       handimg,
+          //       pose.keypoints[i].position.x - handimg.width / 2,
+          //       pose.keypoints[i].position.y - handimg.height / 2
+          //     );
+          //   else if (pose.keypoints[i].part === "leftWrist")
+          //     context.drawImage(
+          //       handimg,
+          //       pose.keypoints[i].position.x - handimg.width / 2,
+          //       pose.keypoints[i].position.y - handimg.height / 2
+          //     );
+          // }
+          dist = getDistance(
+            pose.keypoints[4].position.x.toFixed(2),
+            pose.keypoints[4].position.y.toFixed(2),
+            pose.keypoints[6].position.x.toFixed(2),
+            pose.keypoints[6].position.y.toFixed(2)
+          );
+
+          console.log("dist : ", dist);
+
+          angle = getAngle(
+            pose.keypoints[5].position.x.toFixed(2),
+            pose.keypoints[5].position.y.toFixed(2),
+            pose.keypoints[6].position.x.toFixed(2),
+            pose.keypoints[6].position.y.toFixed(2)
+          );
+          console.log("angle : ", angle);
+
+          // 어깨 기울기 판단
+          if (angle < 173 || angle > 187) {
+            shoulderStatus.innerHTML = status.bad;
+            console.log("TEST: ", status.bad);
+          } else {
+            shoulderStatus.innerHTML = status.good;
+            console.log("TEST: ", status.good);
+          }
+
+          // console.log(img.width, img.height); // 306, 612
+          // canvas.width = img.width;
+          // canvas.height = img.height;
+        });
+        requestAnimationFrame(predict);
+      }
+    });
+
+    // document.getElementById("btn1").addEventListener("click", charkak);
+    document.getElementById("btn1").addEventListener("click", fetchh);
+    //////////////////////////////////////////////////////////////////////
+    // var renderHits = function () {
+    //   shoulderStatus.innerHTML = hits;
+    // };
+
+    function hello() {
+      alert("안녕?");
+      console.log("Hello World!");
+      console.log(getImage());
+    }
+
+    function getDistance(ax, ay, zx, zy) {
+      var dis_x = ax - zx;
+      var dix_y = ay - zy;
+      dist = Math.sqrt(Math.abs(dis_x * dis_x) + Math.abs(dix_y * dix_y));
+      return dist;
+    }
+
+    function getAngle(x1, y1, x2, y2) {
+      var rad = Math.atan2(y2 - y1, x2 - x1);
+      var angle = 0;
+      if ((rad * 180) / Math.PI < 0) {
+        angle = (rad * 180) / Math.PI + 360;
+        return angle;
+      } else {
+        return (rad * 180) / Math.PI;
+      }
+    }
+
+    function charkak() {
+      html2canvas(document.querySelector("#canvas"), {}).then(function (
+        canvas
+      ) {
+        saveAs(canvas.toDataURL(), "charkak.png");
+      });
+    }
+
+    function saveAs(uri, filename) {
+      var link = document.createElement("a");
+      if (typeof link.download === "string") {
+        link.href = uri;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        window.open(uri);
+      }
+    }
+    //////////////////////////////////////////////////////////////////////
+
+    const color = "aqua";
+    const boundingBoxColor = "red";
+    const lineWidth = 2;
+
+    function toTuple({ y, x }) {
+      return [y, x];
+    }
+
+    function drawPoint(ctx, y, x, r, color) {
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, 2 * Math.PI);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    /**
+     * Draws a line on a canvas, i.e. a joint
+     */
+    function drawSegment([ay, ax], [by, bx], color, scale, ctx) {
+      ctx.beginPath();
+      ctx.moveTo(ax * scale, ay * scale);
+      ctx.lineTo(bx * scale, by * scale);
+      ctx.lineWidth = lineWidth;
+      ctx.strokeStyle = color;
+      ctx.stroke();
+    }
+
+    /**
+     * Draws a pose skeleton by looking up all adjacent keypoints/joints
+     */
+    function drawSkeleton(keypoints, minConfidence, ctx, scale = 1) {
+      const adjacentKeyPoints = posenet.getAdjacentKeyPoints(
+        keypoints,
+        minConfidence
+      );
+
+      adjacentKeyPoints.forEach((keypoints) => {
+        drawSegment(
+          toTuple(keypoints[0].position),
+          toTuple(keypoints[1].position),
+          color,
+          scale,
+          ctx
+        );
+      });
+    }
+
+    /**
+     * Draw pose keypoints onto a canvas
+     */
+    function drawKeypoints(keypoints, minConfidence, ctx, scale = 1) {
+      for (let i = 0; i < keypoints.length; i++) {
+        const keypoint = keypoints[i];
+
+        if (keypoint.score < minConfidence) {
+          continue;
+        }
+
+        const { y, x } = keypoint.position;
+        drawPoint(ctx, y * scale, x * scale, 3, color);
+      }
+    }
+
+    /**
+     * Draw the bounding box of a pose. For example, for a whole person standing
+     * in an image, the bounding box will begin at the nose and extend to one of
+     * ankles
+     */
+    function drawBoundingBox(keypoints, ctx) {
+      const boundingBox = posenet.getBoundingBox(keypoints);
+
+      ctx.rect(
+        boundingBox.minX,
+        boundingBox.minY,
+        boundingBox.maxX - boundingBox.minX,
+        boundingBox.maxY - boundingBox.minY
+      );
+
+      ctx.strokeStyle = boundingBoxColor;
+      ctx.stroke();
+    }
+  </script>
+</html>

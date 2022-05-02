@@ -111,7 +111,7 @@
             </div>
           </div>
         </div>
-
+  <!-- 
         <div class="why__card">
           <div class="why__box">
             <img src="/imgs/인공지능1.jfif">
@@ -124,7 +124,7 @@
           </div>
         </div>
 
-        <script>
+      <script>
           $(window).on('scroll', function(){
             var cardheigh = $(window).scrollTop();
             console.log(cardheigh)
@@ -133,7 +133,7 @@
             var x = (-1/600) * cardheigh + 3348/600;
             $('.why__box').eq(1).css('opacity', x);
           });
-        </script>
+        </script> -->
       </section>
 
       <!-- worry -->
@@ -160,6 +160,8 @@
             틀린 자세를 교정할 수 있어요.</div>
         </div>
       </div>
+      <h2>지금 무료로 본인의 체형 불균형 정보를 확인해보세요</h2>
+      
       </section>
 
       <section id="trainer" class="section">
@@ -354,7 +356,13 @@
         <div class="contact">
           <div class="contact__top">
           <div class="contact__left">NoTouchFitness</div>
-          <div class="contact__center"><button class="contact__center__button">비즈니스/제휴문의</button></div>
+          <div class="contact__center">
+            <% if(isAuthenticated){ %>
+            <button class="contact__center__button"><a href="/users/<%= currentUser.username %>/socket" style="text-decoration: none;">서비스/환불 문의</a></button>
+            <% } else { %>
+            <button class="contact__center__button"><a href="/socket" style="text-decoration: none;">서비스/환불 문의</a></button>
+            <% } %>
+          </div>
           <div class="contact__right"><i class="fab fa-youtube"></i></div>
         </div>
           <div class="contact__bottom">
