@@ -16,6 +16,10 @@
 
     <style>
       /* 이미지에 캔버스를 겹쳐서 그릴때는 아래 주석 해제 */
+      body {
+        background-color: #c0c0c0;
+      }
+
       canvas {
         position: absolute;
         transform: translate(-50%, -50%);
@@ -46,10 +50,10 @@
       playsinline
     ></video>
     <canvas id="canvas"></canvas>
-    <div class="edgeText">
-      현재 회원님의 어깨 자세: <span id="shoulderStatus"></span>
+    <div class="edgeText" style="text-align: center; margin-top: 80px">
+      <h1>현재 회원님의 어깨 자세: <span id="shoulderStatus"></span></h1>
+      <h4>(카메라 기능을 켜고 상체가 모두 보이도록 해주세요)</h4>
     </div>
-    <button id="btn1">버튼</button>
   </body>
   <!-- Place your code in the script tag below. You can also use an external .js file -->
   <script>

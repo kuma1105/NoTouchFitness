@@ -68,6 +68,7 @@ sslServer.listen(3000, () =>
 );
 
 io.on("connection", function (socket) {
+  // 홍기형꺼
   socket.on("chatting", (data) => {
     const { name, msg } = data;
     io.emit("chatting", {
