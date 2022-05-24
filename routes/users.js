@@ -94,7 +94,7 @@ router.post('/:username/editBMI', util.isLoggedin, checkPermission, function (re
     });
 });
 
-// 장바구니 페이지
+// cart 페이지
 router.get('/:username/cart', util.isLoggedin, checkPermission, function (req, res) {
   PtShop.find({}, function (err, ptShop) {
     Cart.find({ username: req.params.username }, function (err, cart) {
@@ -161,6 +161,16 @@ router.get(
     }
   }
 );
+
+// AI PT
+router.get('/qweasd123/aipt', util.isLoggedin, checkPermission, function (req, res) {
+  PtShop.find({}, function (err, ptShop) {
+    Cart.find({ username: 'qweasd123' }, function (err, cart) {
+      if (err) return res.json(err);
+      res.render('home/aipt', { cart: cart });
+    });
+  });
+});
 
 module.exports = router;
 

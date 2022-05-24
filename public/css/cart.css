@@ -1,181 +1,88 @@
-:root {
-  --surface-color: rgb(255, 137, 41);
-  --curve: 40;
+* {
+  margin: 0;
+  padding: 0;
 }
-
-@font-face {
-  font-family: "Cafe24Ohsquare";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff")
-    format("woff");
+body {
+  background-color: #f2eee9;
+  font: normal 13px/1.5 Georgia, Serif;
+  color: #333;
+}
+.wrapper {
+  width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+}
+h1 {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  font-size: 20px;
   font-weight: normal;
-  font-style: normal;
+  text-transform: uppercase;
+  padding: 4px 20px;
+  float: left;
 }
-
+.clear {
+  clear: both;
+}
+.items {
+  display: block;
+  margin: 20px 0;
+}
 .cardss {
   display: flex;
   gap: 2rem;
-  margin: 4rem 5vw;
+  /* margin: 4rem 5vw; */
   padding: 0;
   list-style-type: none;
 }
-
-.cards {
-  position: relative;
+.item {
+  background-color: #fff;
+  float: left;
+  margin: 0 10px 10px 0;
+  width: 205px;
+  padding: 10px;
+  height: 290px;
+}
+.item img {
   display: block;
-  height: 100%;
-  overflow: hidden;
-  text-decoration: none;
+  margin: auto;
 }
-
-.cards__image {
-  width: 100%;
-  height: auto;
-  border: 2px solid gray;
-}
-
-.cards__overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  border-radius: calc(var(--curve) * 1px);
-  background-color: var(--surface-color);
-  transform: translateY(100%);
-  transition: 0.2s ease-in-out;
-  opacity: 0.8;
-}
-
-.cards:hover .cards__overlay {
-  transform: translateY(0);
-}
-
-.cards__header {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 2em;
-  padding: 2em;
-  border-radius: calc(var(--curve) * 1px) 0 0 0;
-  background-color: var(--surface-color);
-  transform: translateY(-100%);
-  transition: 0.2s ease-in-out;
-}
-
-.cards__arc {
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  bottom: 100%;
-  right: 0;
-  z-index: 1;
-}
-
-/* .cards__arc path {
-    fill: var(--surface-color);
-    d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
-  } */
-
-.cards:hover .cards__header {
-  transform: translateY(0);
-}
-
-.cards__thumb {
-  flex-shrink: 0;
-  width: 50px;
-  height: 50px;
-  border-radius: 30%;
-}
-
-.cards__title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #123;
+h2 {
+  font-size: 16px;
   display: block;
-  margin: 5px 0 10px;
-  letter-spacing: -0.5px;
-  line-height: 1.3;
+  border-bottom: 1px solid #ccc;
+  margin: 0 0 10px;
+  padding: 0 0 5px;
 }
-
-.cards__tagline {
-  display: block;
-  margin: 1em 0;
-  font-family: "MockFlowFont";
-  font-size: 0.8em;
-  color: #d7bdca;
+button {
+  border: 1px solid #722a1b;
+  padding: 4px 14px;
+  background-color: #fff;
+  color: #722a1b;
+  text-transform: uppercase;
+  float: right;
+  margin: 5px 0;
+  font-weight: bold;
+  cursor: pointer;
 }
-
-.cards__status {
-  font-size: 0.8em;
-  color: #d7bdca;
+span {
+  float: right;
 }
-
-.price {
-  padding: 0 2em 2em;
+.shopping-cart {
+  display: inline-block;
+  background: url("http://cdn1.iconfinder.com/data/icons/jigsoar-icons/24/_cart.png")
+    no-repeat 0 0;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px 0 0;
+}
+.cart__ptTitle {
+  font-size: 1em;
+  font-weight: bold;
+  padding: 10px;
   margin: 0;
-  color: black;
-  font-family: "MockFlowFont";
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
 }
-
-.price i {
-  font-style: normal;
-}
-
-.price b {
-  font-size: 11px;
-  color: #e32438;
-  font-weight: 600;
-}
-
-.strong {
-  font-weight: bolder;
-}
-
-.remaining {
-  font-size: 11px;
-  letter-spacing: -0.5px;
-  box-sizing: border-box;
-  display: block;
-}
-
-.programALL {
-  padding: 25px 15px;
-  min-height: 880px px;
-}
-
-h3 {
-  color: #123;
-  font-size: 32px;
-  font-family: Cafe24Ohsquare_air;
-  line-height: 1.4;
-  margin-bottom: 20px;
-}
-
-h3 span {
-  display: block;
-}
-
-h3 b {
-  font-family: Cafe24Ohsquare;
-}
-
-.prmmid {
-  padding: 15px 0;
-}
-
-.prmmid h4 {
-  font-family: Cafe24Ohsquare;
-  font-size: 20px;
-  margin: 0 15px 5px;
-  color: #111;
-}
-
-.prmmid p {
-  color: rgb(40, 212, 126);
-  font-size: 13px;
-  margin: 0 15px 5px;
+.cart__category {
+  padding: 10px;
 }

@@ -227,6 +227,15 @@ router.get('/onlinept/ml/wallsquat', function (req, res) {
   res.render('ml/wallsquat');
 });
 
+// // AI PT
+// router.get('/aipt', function (req, res) {
+//   PtShop.find({}, function (err, ptShop) {
+//     Cart.find({ username: req.params.username }, function (err, cart) {
+//       if (err) return res.json(err);
+//       res.render('home/aipt', { cart: cart });
+//     });
+//   });
+// });
 
 
 module.exports = router;

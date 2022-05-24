@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="/css/cart.css" />
+    <%- include('../partials/head') %>
+  </head>
+
+  <body>
+    <%- include('../partials/nav') %>
+    <h1>구매내역</h1>
+    <ul class="cardss">
+      <% cart.forEach((cart)=> { %>
+      <li>
+        <a href="<%= cart.mlUrl%>" class="cards">
+          <img src="<%= cart.img%>" class="cards__image" alt="A3" />
+          <div class="cards__overlay">
+            <div class="cards__header">
+              <img class="cards__thumb" src="/imgs/b3.png" alt="B3" />
+              <div class="cards__header-text">
+                <h3 class="cards__title"><%= cart.ptTitle %></h3>
+                <span class="cards__status"> <%= cart.category %> </span>
+                <button onclick="location.href='ptClass'">수업</button>
+                <button onclick="location.href='chatting'">상담</button>
+              </div>
+            </div>
+          </div>
+        </a>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

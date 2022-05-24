@@ -120,13 +120,14 @@
           status = "STAND";
         } else if (prediction[1].probability.toFixed(2) > 0.9) {
           status = "SQUAT";
-        } else if (prediction[2].probability.toFixed(2) > 0.9) {
-          if (status == "SQUAT" || status == "STAND") {
-            var audio = new Audio("/mp3/bent.mp3");
-            audio.play();
-          }
-          status = "BENT";
         }
+        // else if (prediction[2].probability.toFixed(2) > 0.9) {
+        //   // if (status == "SQUAT" || status == "STAND") {
+        //   //   // var audio = new Audio("/mp3/bent.mp3");
+        //   //   // audio.play();
+        //   // }
+        //   status = "BENT";
+        // }
         //
 
         // 출력내용 : "클래스 이름 : 0.00 ~ 1.00"

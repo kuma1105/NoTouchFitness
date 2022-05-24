@@ -8,26 +8,37 @@
 
   <body>
     <%- include('../partials/nav') %>
-    <h1>구매내역</h1>
-    <ul class="cardss">
-      <% cart.forEach((cart)=> { %>
-      <li>
-        <a href="<%= cart.mlUrl%>" class="cards">
-          <img src="<%= cart.img%>" class="cards__image" alt="A3" />
-          <div class="cards__overlay">
-            <div class="cards__header">
-              <img class="cards__thumb" src="/imgs/b3.png" alt="B3" />
-              <div class="cards__header-text">
-                <h3 class="cards__title"><%= cart.ptTitle %></h3>
-                <span class="cards__status"> <%= cart.category %> </span>
-                <button onclick="location.href='ptClass'">수업</button>
-                <button onclick="location.href='chatting'">상담</button>
-              </div>
-            </div>
-          </div>
-        </a>
-      </li>
-      <% }) %>
-    </ul>
+    <div class="wrapper">
+      <h1 style="color: white">구매내역</h1>
+
+      <div class="clear"></div>
+      <!-- items -->
+      <div class="items">
+        <!-- single item -->
+        <ul class="cardss">
+          <% cart.forEach((cart)=> { %>
+          <li class="item">
+            <!-- <div class="item"> -->
+            <img
+              src="<%= cart.img%>"
+              alt="item"
+              style="width: 240px; height: 180px"
+            />
+            <h2 class="cart__ptTitle"><%= cart.ptTitle %></h2>
+            <p class="cart__category"><%= cart.category %></p>
+            <button onclick="location.href='ptClass'">수업</button>
+            <button onclick="location.href='chatting'">상담</button>
+            <a href="<%= cart.mlUrl%>"
+              ><button class="add-to-cart" type="button">AI</button></a
+            >
+            <!-- </div> -->
+          </li>
+          <% }) %>
+        </ul>
+        <!--/ single item -->
+      </div>
+      <!--/ items -->
+    </div>
+    <!--/ wrapper -->
   </body>
 </html>
